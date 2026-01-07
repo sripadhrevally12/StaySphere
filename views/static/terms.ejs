@@ -1,0 +1,85 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  .terms-wrapper {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .terms-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .terms-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .terms-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+
+  .terms-card ul {
+    padding-left: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .terms-card li {
+    margin-bottom: 0.6rem;
+    color: #444;
+  }
+
+  .terms-footer {
+    font-size: 0.9rem;
+    color: #777;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 576px) {
+    .terms-card {
+      padding: 1.5rem;
+    }
+
+    .terms-title {
+      font-size: 1.6rem;
+    }
+  }
+</style>
+
+<div class="container my-5 terms-wrapper">
+  <div class="terms-card">
+
+    <h2 class="terms-title">Terms & Conditions</h2>
+
+    <p>
+      By accessing and using <strong>StaySphere</strong>, you agree to the following terms and conditions.
+    </p>
+
+    <ul>
+      <li>This platform is intended for educational and demonstration purposes only.</li>
+      <li>Users are solely responsible for the content they create and upload.</li>
+      <li>StaySphere does not guarantee the accuracy or completeness of listing information.</li>
+      <li>Any misuse, abuse, or unauthorized activity may lead to account suspension or removal.</li>
+      <li>Features, functionality, and availability may change without prior notice.</li>
+    </ul>
+
+    <p>
+      StaySphere does not support real-world bookings, payments, or transactions.
+      All listings are for display and learning purposes only.
+    </p>
+
+    <div class="terms-footer">
+      Last updated: <%= new Date().getFullYear() %>
+    </div>
+
+  </div>
+</div>

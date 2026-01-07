@@ -1,0 +1,153 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+.edit-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.edit-card {
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.edit-img-preview {
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.btn-edit {
+  background-color: #ff385c;
+  border: none;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-edit:hover {
+  background-color: #e11d48;
+}
+</style>
+
+<div class="row mt-3">
+  <div class="col-lg-8 offset-lg-2 col-12">
+    <div class="card edit-card p-4">
+
+      <h3 class="edit-title text-center">Edit Your Listing</h3>
+
+      <form
+        method="POST"
+        action="/listings/<%= listing._id %>?_method=PUT"
+        class="needs-validation"
+        novalidate
+        enctype="multipart/form-data"
+      >
+
+        <!-- TITLE -->
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input
+            name="listing[title]"
+            value="<%= listing.title %>"
+            type="text"
+            class="form-control"
+            required
+          >
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea
+            name="listing[description]"
+            class="form-control"
+            required
+          ><%= listing.description %></textarea>
+        </div>
+
+        <!-- CATEGORY -->
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select
+            name="listing[category]"
+            class="form-select"
+            required
+          >
+            <option value="rooms"     <%= listing.category === "rooms" ? "selected" : "" %>>Rooms</option>
+            <option value="cities"    <%= listing.category === "cities" ? "selected" : "" %>>Iconic Cities</option>
+            <option value="mountains" <%= listing.category === "mountains" ? "selected" : "" %>>Mountains</option>
+            <option value="castles"   <%= listing.category === "castles" ? "selected" : "" %>>Castles</option>
+            <option value="pools"     <%= listing.category === "pools" ? "selected" : "" %>>Pools</option>
+            <option value="camping"   <%= listing.category === "camping" ? "selected" : "" %>>Camping</option>
+            <option value="farms"     <%= listing.category === "farms" ? "selected" : "" %>>Farms</option>
+            <option value="boats"     <%= listing.category === "boats" ? "selected" : "" %>>Boats</option>
+          </select>
+        </div>
+
+        <!-- IMAGE PREVIEW -->
+        <div class="mb-3">
+          <p class="fw-semibold">Original Listing Image</p>
+          <% if (originalImageUrl) { %>
+            <img src="<%= originalImageUrl %>" class="img-fluid edit-img-preview">
+          <% } else { %>
+            <p>No image available</p>
+          <% } %>
+        </div>
+
+        <!-- IMAGE UPLOAD -->
+        <div class="mb-3">
+          <label class="form-label">Upload New Image</label>
+          <input
+            name="listing[image]"
+            type="file"
+            class="form-control"
+          >
+        </div>
+
+        <!-- PRICE + COUNTRY -->
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label class="form-label">Price</label>
+            <input
+              name="listing[price]"
+              value="<%= listing.price %>"
+              type="number"
+              class="form-control"
+              required
+            >
+          </div>
+
+          <div class="mb-3 col-md-8">
+            <label class="form-label">Country</label>
+            <input
+              name="listing[country]"
+              value="<%= listing.country %>"
+              type="text"
+              class="form-control"
+              required
+            >
+          </div>
+        </div>
+
+        <!-- LOCATION -->
+        <div class="mb-3">
+          <label class="form-label">Location</label>
+          <input
+            name="listing[location]"
+            value="<%= listing.location %>"
+            type="text"
+            class="form-control"
+            required
+          >
+        </div>
+
+        <button class="btn btn-edit w-100 mt-3">
+          Update Listing
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>

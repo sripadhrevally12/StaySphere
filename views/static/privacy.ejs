@@ -1,0 +1,96 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  .policy-wrapper {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .policy-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .policy-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .policy-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+
+  .policy-card ul {
+    padding-left: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .policy-card li {
+    margin-bottom: 0.5rem;
+    color: #444;
+  }
+
+  .policy-footer {
+    font-size: 0.9rem;
+    color: #777;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 576px) {
+    .policy-card {
+      padding: 1.5rem;
+    }
+
+    .policy-title {
+      font-size: 1.6rem;
+    }
+  }
+</style>
+
+<div class="container my-5 policy-wrapper">
+  <div class="policy-card">
+
+    <h2 class="policy-title">Privacy Policy</h2>
+
+    <p>
+      <strong>StaySphere</strong> is a demo property listing platform created for
+      educational and portfolio purposes only.
+    </p>
+
+    <p>
+      We collect minimal user information such as:
+    </p>
+
+    <ul>
+      <li>Username</li>
+      <li>Email address</li>
+    </ul>
+
+    <p>
+      This information is used strictly for authentication and basic account functionality.
+      Listing images and related content may be stored using third-party services.
+    </p>
+
+    <p>
+      We do <strong>not</strong> sell, share, or misuse user data.  
+      This platform does not handle payments or store sensitive financial information.
+    </p>
+
+    <p>
+      By using this application, you acknowledge and agree to this privacy policy.
+    </p>
+
+    <div class="policy-footer">
+      Last updated: <%= new Date().getFullYear() %>
+    </div>
+
+  </div>
+</div>

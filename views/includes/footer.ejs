@@ -1,0 +1,80 @@
+<style>
+.footer {
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+}
+
+.f-info {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.f-info-socials i {
+  font-size: 1.4rem;
+  margin-right: 0.8rem;
+  cursor: pointer;
+  color: #555;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.f-info-socials i:hover {
+  color: #ff385c;
+  transform: translateY(-2px);
+}
+
+.f-info-links a {
+  text-decoration: none;
+  color: #555;
+  margin-left: 1rem;
+  font-weight: 500;
+}
+
+.f-info-links a:hover {
+  color: #ff385c;
+  text-decoration: underline;
+}
+
+.f-info-brand {
+  font-weight: 600;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .f-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .f-info-links a {
+    margin: 0 0.5rem;
+  }
+}
+</style>
+
+<footer class="footer">
+  <div class="f-info">
+    <div class="f-info-socials">
+      <i class="fa-brands fa-square-facebook"></i>
+      <i class="fa-brands fa-square-instagram"></i>
+      <i class="fa-brands fa-linkedin"></i>
+    </div>
+
+    <div class="f-info-brand">
+      © 2025 StaySphere Private Limited
+    </div>
+
+    <div class="f-info-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms & Conditions</a>
+    </div>
+  </div>
+</footer>

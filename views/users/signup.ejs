@@ -1,0 +1,125 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+/* BASE (MOBILE FIRST) ================= */
+
+.signup-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.signup-card {
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  background: #fff;
+}
+
+.btn-signup {
+  background-color: #ff385c;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.55rem;
+}
+
+.btn-signup:hover {
+  background-color: #e11d48;
+}
+
+.form-control {
+  border-radius: 0.6rem;
+  padding: 0.55rem 0.75rem;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ff385c;
+}
+
+/* ================= DESKTOP ONLY ================= */
+@media (min-width: 992px) {
+
+  .signup-title {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .signup-card {
+    padding: 2.5rem !important;
+  }
+
+  .form-control {
+    padding: 0.7rem 1rem;
+    font-size: 1.05rem;
+  }
+
+  .btn-signup {
+    padding: 0.75rem;
+    font-size: 1.05rem;
+  }
+}
+</style>
+
+<div class="container">
+  <div class="row justify-content-center align-items-center mt-5">
+
+    <!-- Desktop bigger, mobile unchanged -->
+    <div class="col-lg-5 col-md-6 col-sm-10">
+
+      <h1 class="signup-title">Create your account</h1>
+
+      <div class="card signup-card p-4">
+
+        <form action="/signup" method="POST" class="needs-validation" novalidate>
+
+          <div class="mb-3">
+            <label for="username" class="form-label fw-semibold">
+              Username
+            </label>
+            <input
+              name="username"
+              id="username"
+              type="text"
+              class="form-control"
+              required>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label fw-semibold">
+              Email
+            </label>
+            <input
+              name="email"
+              id="email"
+              type="email"
+              class="form-control"
+              required>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label fw-semibold">
+              Password
+            </label>
+            <input
+              name="password"
+              id="password"
+              type="password"
+              class="form-control"
+              required>
+          </div>
+
+          <button class="btn btn-signup w-100 mt-3">
+            Sign Up
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

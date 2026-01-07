@@ -1,0 +1,235 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+/* ================= FILTER BAR ================= */
+#filters {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow-x: auto;
+
+  padding: 0.25rem 0 0.25rem;  /* 🔥 very tight */
+  margin-top: 0;              /* 🔥 remove gap */
+  border-top: 1px solid #eee; /* subtle separation */
+
+  scrollbar-width: none;
+}
+
+#filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter {
+  text-align: center;
+  opacity: 0.7;
+  cursor: pointer;
+  min-width: 65px;
+  padding-bottom: 0.2rem;
+}
+
+.filter:hover,
+.filter.active {
+  opacity: 1;
+  color: #ff385c;
+  border-bottom: 2px solid #ff385c;
+}
+
+.filter p {
+  font-size: 0.75rem;
+  margin: 0.15rem 0 0;
+}
+
+/* ================= TAX TOGGLE ================= */
+.tax-toggle {
+  margin-left: auto;
+  padding: 0 0.6rem;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  height: 2.4rem;       /* 🔥 smaller */
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ================= LISTINGS ================= */
+.listing-link {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.listing-title {
+  font-size: 1rem;
+  text-decoration: none !important;
+}
+
+.price {
+  font-weight: 600;
+  color: #111;
+}
+
+.price-unit {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.total-price {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ff385c;
+}
+
+.listing-card:hover .price {
+  color: #ff385c;
+}
+
+@media (max-width: 576px) {
+  #filters {
+    gap: 0.5rem;
+    padding: 0.2rem 0;
+  }
+
+  .filter {
+    min-width: 56px;
+  }
+
+  .filter p {
+    font-size: 0.65rem;
+  }
+
+  .tax-toggle {
+    height: 2.1rem;
+    padding: 0 0.45rem;
+  }
+}
+
+</style>
+
+<!-- ================= FILTERS ================= -->
+<div id="filters">
+
+  <div class="filter active" data-filter="all">
+    <i class="fa-solid fa-border-all"></i>
+    <p>All</p>
+  </div>
+
+  <div class="filter" data-filter="rooms">
+    <i class="fa-solid fa-bed"></i>
+    <p>Rooms</p>
+  </div>
+
+  <div class="filter" data-filter="cities">
+    <i class="fa-solid fa-city"></i>
+    <p>Cities</p>
+  </div>
+
+  <div class="filter" data-filter="mountains">
+    <i class="fa-solid fa-mountain"></i>
+    <p>Mountains</p>
+  </div>
+
+  <div class="filter" data-filter="castles">
+    <i class="fa-brands fa-fort-awesome"></i>
+    <p>Castles</p>
+  </div>
+
+  <div class="filter" data-filter="pools">
+    <i class="fa-solid fa-person-swimming"></i>
+    <p>Pools</p>
+  </div>
+
+  <div class="filter" data-filter="camping">
+    <i class="fa-solid fa-campground"></i>
+    <p>Camping</p>
+  </div>
+
+  <div class="filter" data-filter="farms">
+    <i class="fa-solid fa-cow"></i>
+    <p>Farms</p>
+  </div>
+
+  <div class="filter" data-filter="boats">
+    <i class="fa-solid fa-ship"></i>
+    <p>Boats</p>
+  </div>
+
+  <div class="tax-toggle">
+    <div class="form-check form-switch mb-0">
+      <input class="form-check-input" type="checkbox" id="taxSwitch">
+      <label class="form-check-label">Include GST (18%)</label>
+    </div>
+  </div>
+
+</div>
+
+<!-- ================= LISTINGS ================= -->
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-2">
+
+<% for (let listing of allListings) { %>
+<a href="/listings/<%= listing._id %>" class="listing-link">
+
+  <div class="card listing-card" data-category="<%= listing.category %>">
+
+    <img
+      src="<%= listing.image?.url || listing.image || '/images/default.jpg' %>"
+      class="card-img-top"
+      style="height:14rem; object-fit:cover;"
+    >
+
+    <div class="card-body">
+      <b class="listing-title"><%= listing.title %></b><br>
+
+      <span class="price" data-base="<%= listing.price %>">
+        ₹ <%= listing.price.toLocaleString("en-IN") %>
+      </span>
+      <span class="price-unit"> / night</span>
+      <span class="total-price d-none"></span>
+    </div>
+
+  </div>
+</a>
+<% } %>
+
+</div>
+
+<script>
+/* ================= TAX TOGGLE ================= */
+const taxRate = 0.18;
+
+document.getElementById("taxSwitch").addEventListener("change", e => {
+  document.querySelectorAll(".price").forEach(priceEl => {
+    const base = Number(priceEl.dataset.base);
+    const totalEl = priceEl.parentElement.querySelector(".total-price");
+    const unitEl = priceEl.parentElement.querySelector(".price-unit");
+
+    if (e.target.checked) {
+      const total = Math.round(base * (1 + taxRate));
+      totalEl.textContent = `₹ ${total.toLocaleString("en-IN")} incl. GST`;
+      totalEl.classList.remove("d-none");
+      priceEl.style.display = "none";
+      unitEl.style.display = "none";
+    } else {
+      totalEl.classList.add("d-none");
+      priceEl.style.display = "inline";
+      unitEl.style.display = "inline";
+    }
+  });
+});
+
+/* ================= CATEGORY FILTER ================= */
+document.querySelectorAll(".filter").forEach(filter => {
+  filter.addEventListener("click", () => {
+    document.querySelectorAll(".filter").forEach(f => f.classList.remove("active"));
+    filter.classList.add("active");
+
+    const selected = filter.dataset.filter;
+
+    document.querySelectorAll(".listing-card").forEach(card => {
+      card.parentElement.style.display =
+        selected === "all" || card.dataset.category === selected
+          ? "block"
+          : "none";
+    });
+  });
+});
+</script>

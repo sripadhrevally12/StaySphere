@@ -1,0 +1,182 @@
+<style>
+/* BRAND */
+.brand-logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ff385c !important;
+  letter-spacing: -0.5px;
+}
+
+.brand-logo i {
+  margin-left: 0.4rem;
+}
+
+/* NAV LINKS */
+.nav-link {
+  font-weight: 500;
+  color: #222 !important;
+}
+
+.nav-link:hover {
+  color: #ff385c !important;
+}
+
+/* SEARCH */
+.search-btn {
+  background-color: #ff385c;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.4rem 1.2rem;
+  font-weight: 600;
+}
+
+.search-btn:hover {
+  background-color: #e11d48;
+  color: #fff;
+}
+
+.search-btn i {
+  margin-right: 0.4rem;
+}
+
+.search-inp {
+  border-radius: 999px;
+  padding: 0.45rem 1.2rem;
+  font-size: 0.95rem;
+  border: 1px solid #ddd;
+}
+
+.search-inp:focus {
+  box-shadow: none;
+  border-color: #ff385c;
+}
+
+/* USER MENU */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.user-menu i {
+  font-size: 1.3rem;
+  color: #ff385c;
+}
+
+.dropdown-menu {
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* MOBILE ONLY */
+@media (max-width: 768px) {
+  .mobile-nav {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    margin-top: 0.5rem;
+  }
+
+  form.d-flex {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-inp,
+  .search-btn {
+    width: 100%;
+  }
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+</style>
+
+<nav class="navbar navbar-expand-md navbar-light bg-white border-bottom sticky-top">
+  <div class="container-md px-3">
+
+    <!-- BRAND -->
+    <a class="navbar-brand brand-logo" href="/listings">
+      StaySphere <i class="fa-regular fa-compass"></i>
+    </a>
+
+    <!-- TOGGLER -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- NAV -->
+    <div class="collapse navbar-collapse mobile-nav" id="navbarNav">
+
+      <!-- LEFT -->
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <!-- CENTER SEARCH -->
+      <div class="navbar-nav mx-auto my-2 my-md-0">
+        <form class="d-flex" action="/listings/search" method="GET">
+          <input
+            class="form-control me-md-2 search-inp"
+            type="search"
+            name="q"
+            placeholder="Search destinations">
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>Search
+          </button>
+        </form>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="navbar-nav ms-auto align-items-md-center">
+
+        <% if (!currUser) { %>
+          <a class="nav-link fw-semibold" href="/signup">Sign up</a>
+          <a class="nav-link fw-semibold" href="/login">Log in</a>
+        <% } %>
+
+        <% if (currUser) { %>
+          <div class="dropdown">
+            <a
+              class="nav-link dropdown-toggle user-menu"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown">
+              <i class="fa-solid fa-circle-user"></i>
+              <span><%= currUser.username %></span>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="/listings/new">
+                  <i class="fa-solid fa-plus me-2"></i>Add Listing
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item text-danger" href="/logout">
+                  <i class="fa-solid fa-right-from-bracket me-2"></i>Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        <% } %>
+
+      </div>
+    </div>
+  </div>
+</nav>

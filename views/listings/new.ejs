@@ -1,0 +1,135 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+.new-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.new-card {
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.btn-add {
+  background-color: #ff385c;
+  border: none;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-add:hover {
+  background-color: #e11d48;
+}
+</style>
+
+<div class="row mt-3">
+<div class="col-lg-8 offset-lg-2 col-12">
+    <div class="card new-card p-4">
+
+      <h3 class="new-title text-center">Create a New Listing</h3>
+
+      <form
+        method="POST"
+        action="/listings"
+        class="needs-validation"
+        novalidate
+        enctype="multipart/form-data"
+      >
+
+        <!-- TITLE -->
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input
+            name="listing[title]"
+            type="text"
+            class="form-control"
+            placeholder="Add a catchy title"
+            required
+          >
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea
+            name="listing[description]"
+            class="form-control"
+            required
+          ></textarea>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="mb-3">
+          <label class="form-label">Upload Listing Image</label>
+          <input
+            name="listing[image]"
+            type="file"
+            class="form-control"
+            required
+          >
+        </div>
+
+        <!-- PRICE + COUNTRY -->
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label class="form-label">Price</label>
+            <input
+              name="listing[price]"
+              type="number"
+              class="form-control"
+              required
+            >
+          </div>
+
+          <div class="mb-3 col-md-8">
+            <label class="form-label">Country</label>
+            <input
+              name="listing[country]"
+              type="text"
+              class="form-control"
+              required
+            >
+          </div>
+        </div>
+
+        <!-- LOCATION -->
+        <div class="mb-3">
+          <label class="form-label">Location</label>
+          <input
+            name="listing[location]"
+            type="text"
+            class="form-control"
+            required
+          >
+        </div>
+
+        <!-- CATEGORY -->
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select
+            name="listing[category]"
+            class="form-select"
+            required
+          >
+            <option value="">Select category</option>
+            <option value="rooms">Rooms</option>
+            <option value="cities">Iconic Cities</option>
+            <option value="mountains">Mountains</option>
+            <option value="castles">Castles</option>
+            <option value="pools">Amazing Pools</option>
+            <option value="camping">Camping</option>
+            <option value="farms">Farms</option>
+            <option value="boats">Boats</option>
+          </select>
+        </div>
+
+        <button class="btn btn-add w-100 mt-3">
+          Add Listing
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>

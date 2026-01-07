@@ -1,0 +1,124 @@
+<style>
+/* FLASH CONTAINER */
+.flash-container {
+  position: fixed;
+  top: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  width: 90%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* FLASH CARD */
+.flash {
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  animation: slideDown 0.4s ease;
+  font-weight: 500;
+}
+
+/* SUCCESS */
+.flash-success {
+  background-color: #ecfdf5;
+  color: #065f46;
+}
+
+/* ERROR */
+.flash-error {
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+/* ICON */
+.flash i {
+  margin-right: 0.6rem;
+}
+
+/* CLOSE */
+.flash-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* DARK MODE */
+@media (prefers-color-scheme: dark) {
+  .flash-success {
+    background-color: #064e3b;
+    color: #d1fae5;
+  }
+
+  .flash-error {
+    background-color: #7f1d1d;
+    color: #fee2e2;
+  }
+}
+
+/* ANIMATION */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+
+<div class="flash-container">
+
+  <% if (success && success.length) { %>
+    <% success.forEach(msg => { %>
+      <div class="flash flash-success auto-dismiss">
+        <div>
+          <i class="fa-solid fa-circle-check"></i>
+          <%= msg %>
+        </div>
+        <button class="flash-close">&times;</button>
+      </div>
+    <% }) %>
+  <% } %>
+
+  <% if (error && error.length) { %>
+    <% error.forEach(msg => { %>
+      <div class="flash flash-error auto-dismiss">
+        <div>
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <%= msg %>
+        </div>
+        <button class="flash-close">&times;</button>
+      </div>
+    <% }) %>
+  <% } %>
+
+</div>
+
+<script>
+  // Auto-dismiss after 3 seconds
+  document.querySelectorAll(".auto-dismiss").forEach(flash => {
+    setTimeout(() => {
+      flash.style.opacity = "0";
+      flash.style.transform = "translateY(-10px)";
+      setTimeout(() => flash.remove(), 300);
+    }, 3000);
+  });
+
+  // Manual close
+  document.querySelectorAll(".flash-close").forEach(btn => {
+    btn.addEventListener("click", () => {
+      btn.parentElement.remove();
+    });
+  });
+</script>

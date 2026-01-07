@@ -1,0 +1,51 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+
+  .error-card {
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  border: none;
+}
+
+.error-icon {
+  font-size: 3rem;
+  color: #ff385c;
+}
+
+.error-title {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.error-message {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.btn-error {
+  background-color: #ff385c;
+  color: white;
+  font-weight: 600;
+  border: none;
+}
+
+.btn-error:hover {
+  background-color: #e11d48;
+}
+
+</style>
+<div class="row mt-5">
+  <div class="col-6 offset-3">
+    <div class="card error-card text-center p-4">
+      <div class="error-icon mb-3">
+        <i class="fa-solid fa-circle-exclamation"></i>
+      </div>
+
+      <h3 class="error-title">Oops! Something went wrong</h3>
+      <p class="error-message"><%= message %></p>
+
+      <a href="/listings" class="btn btn-error mt-3">Go Back Home</a>
+    </div>
+  </div>
+</div>

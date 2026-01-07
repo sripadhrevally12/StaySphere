@@ -1,0 +1,259 @@
+body  {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-optical-sizing: auto;
+ display: flex;
+ flex-direction: column;
+ min-height: 100vh;
+}
+
+.container {
+    flex:1;
+}
+
+.navbar {
+    height: 5rem;
+    background-color: white;
+}
+
+.fa-compass {
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link {
+    color: #222222 !important;
+}
+
+/* Footer */
+.f-info-links a {
+    text-decoration: none;
+    color:#222222;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-links,.f-info-socials ,.f-info-brand {
+    /* vertical-align: middle; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-info-socials i {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.f-info {
+    text-align: center;
+    height: 8rem;
+    background-color: #ebebeb;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+/* cards */
+.listing-card {
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top {
+    border-radius: 1rem !important;
+    width:100% !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 0 !important;
+}
+
+.card-text {
+    font-weight: 400 !important;
+}
+
+.listing-link {
+    text-decoration: none;
+}
+
+/*Card-Effect */ 
+.card-img-overlay {
+    opacity: 0;
+}
+
+.card-img-overlay:hover {
+    opacity:0.2;
+    background-color: white;
+}
+
+
+/*New Page */
+.add-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+/* Edit Page */
+
+.edit-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+
+}
+
+/* Show Page*/
+
+.show-img {
+  height: 30vh;
+}
+
+.btns {
+    display: flex;
+}
+
+.show-card {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Map */
+#map {
+  width: 100%;
+  height: 400px;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+
+
+/* Brand logo*/
+
+.brand-logo {
+  font-size: 1.6rem;         
+  font-weight: 700;           
+  color: #ff385c !important;          
+  letter-spacing: 0.5px;     
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-logo i {
+  font-size: 1.3rem;
+}
+
+.brand-logo:hover {
+  color: #e11d48 !important;            
+  text-decoration: none;
+}
+
+.listing-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.listing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.listing-card img {
+  transition: filter 0.3s ease;
+}
+
+.listing-card:hover img {
+  filter: brightness(0.92);
+}
+
+.listing-card h5 {
+  transition: color 0.3s ease;
+}
+
+.listing-card:hover h5 {
+  color: #ff385c;
+}
+
+.navbar {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.listing-title-main {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.listing-price {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.listing-price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.owner-text {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.location-text {
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.show-card {
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.show-img {
+  height: 22rem;
+  object-fit: cover;
+}
+
+#map {
+  height: 300px;
+  border-radius: 1rem;
+  margin-top: 1rem;
+}
+
+.listing-card:active {
+  transform: scale(0.98);
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  #map {
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .listing-card {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  #map {
+    height: 300px;
+  }
+}
