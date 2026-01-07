@@ -7,11 +7,11 @@ const geocoder = mbxGeocoding({ accessToken: process.env.MAP_TOKEN });
 
 module.exports.index = async(req,res) => {
   const allListings= await Listing.find({});
-  res.render ("listings/index.ejs", {allListings});
+  res.render ("listings/index", {allListings});
 };
 
 module.exports.renderNewForm = (req,res) => {
-    res.render("listings/new.ejs");
+    res.render("listings/new");
 };
 
 module.exports.showListing = async (req,res) => {
@@ -22,7 +22,7 @@ module.exports.showListing = async (req,res) => {
       return  res.redirect("/listings");
     }
     console.log(listing);
-    res.render ("listings/show.ejs",{listing});
+    res.render ("listings/show",{listing});
 };
 
 // module.exports.createListing = async (req,res,next) => {
@@ -103,7 +103,7 @@ if (listing.image && listing.image.url) {
     }
 }
 
-    res.render("listings/edit.ejs", {listing , originalImageUrl});
+    res.render("listings/edit", {listing , originalImageUrl});
 };
 
 // module.exports.updateListing = async (req,res) =>{
@@ -129,7 +129,7 @@ module.exports.updateListing = async (req, res) => {
     { new: true }
   );
 
-  // 🔥 RE-GEOCODE IF LOCATION CHANGED
+  //  RE-GEOCODE IF LOCATION CHANGED
   if (req.body.listing.location) {
     const response = await geocodingClient
       .forwardGeocode({
